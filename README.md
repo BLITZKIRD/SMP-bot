@@ -14,6 +14,9 @@ Our SMP-bot
 
 После добавления первой ленты будут также отображаться изображения для статей, если они есть, и это также можно настроить в интерфейсе.
 ## Используемые библиотеки:
-beathful soup https://github.com/wention/BeautifulSoup4****
-Feedparser https://github.com/kurtmckee/feedparser****
-newspaper3k https://github.com/codelucas/newspaper
+Feedparser https://github.com/kurtmckee/feedparser
+## Обновление на 15.01.25
+1. Были убраны лишние библиотеки в которых не было необходимости.
+2. Была добавлена библиотека feedparser 6.0.11 и telegram-bot 21.10
+3. Был убран баг в коде с библиотекой feedparser
+4. Провелии первые тесты
