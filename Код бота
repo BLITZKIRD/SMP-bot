@@ -1,1 +1,76 @@
+from telegram import Update, InlineKeyboardButton, InlineKeyboardMarkup
+from telegram.ext import Updater, CommandHandler, CallbackQueryHandler, MessageHandler, Filters, CallbackContext
+
+# Список стран для выбора
+countries = [
+    ("Испания", ["Барселона", "Мадрид", "Валенсия"]),
+    ("Италия", ["Рим", "Венеция", "Флоренция"]),
+    ("Франция", ["Париж", "Ницца", "Лион"]),
+    ("Греция", ["Афины", "Санторини", "Крит"]),
+    ("Таиланд", ["Бангкок", "Пхукет", "Ко Самуи"]),
+]
+
+# Стартовая команда
+def start(update: Update, context: CallbackContext) -> None:
+    update.message.reply_text(
+        "Привет! Я помогу тебе выбрать курорт. Выбери страну:",
+        reply_markup=generate_country_keyboard()
+    )
+
+# Генерация клавиатуры для выбора страны
+def generate_country_keyboard() -> InlineKeyboardMarkup:
+    keyboard = [
+        [InlineKeyboardButton(country[0], callback_data=country[0])]
+        for country in countries
+    ]
+    return InlineKeyboardMarkup(keyboard)
+
+# Обработка выбора страны
+def country_selection(update: Update, context: CallbackContext) -> None:
+    query = update.callback_query
+    query.answer()
+
+    country_name = query.data
+    country = next((c for c in countries if c[0] == country_name), None)
+
+    if country:
+        # Показать города для выбранной страны
+        keyboard = [
+            [InlineKeyboardButton(city, callback_data=f"{country_name}-{city}")]
+            for city in country[1]
+        ]
+        query.edit_message_text(
+            text=f"Вы выбрали {country_name}. Теперь выбери курорт:",
+            reply_markup=InlineKeyboardMarkup(keyboard)
+        )
+
+# Обработка выбора города
+def city_selection(update: Update, context: CallbackContext) -> None:
+    query = update.callback_query
+    query.answer()
+
+    data = query.data.split('-')
+    country_name, city_name = data[0], data[1]
+
+    query.edit_message_text(
+        text=f"Вы выбрали курорт {city_name} в {country_name}. Отличный выбор!"
+    )
+
+# Основная функция для запуска бота
+def main():
+    # Вставьте сюда ваш токен
+    updater = Updater("YOUR_BOT_TOKEN")
+
+    # Регистрируем обработчики
+    dispatcher = updater.dispatcher
+    dispatcher.add_handler(CommandHandler("start", start))
+    dispatcher.add_handler(CallbackQueryHandler(country_selection, pattern="^[A-Za-zА-Яа-яЁё]+$"))
+    dispatcher.add_handler(CallbackQueryHandler(city_selection, pattern="^[A-Za-zА-Яа-яЁё]+-[A-Za-zА-Яа-яЁё]+$"))
+
+    # Запуск бота
+    updater.start_polling()
+    updater.idle()
+
+if __name__ == '__main__':
+    main()
 
