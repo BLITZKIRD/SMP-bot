@@ -35,7 +35,7 @@ city_urls = {
 }
 
 # Инициализация бота и диспетчера
-API_TOKEN = "7783295762:AAHwh0C2DgalOVEvqzOnyDI9PekMtWGwwqw"  # Укажите свой токен
+API_TOKEN = "api_key"  # Укажите свой токен
 bot = Bot(token=API_TOKEN)
 storage = MemoryStorage()
 dp = Dispatcher(storage=storage)
