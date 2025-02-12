@@ -22,12 +22,6 @@ Python 3.9+
 
 Библиотеки из requirements.txt
 
-Установка:
-
-Клонируйте репозиторий:
-
-git clone https://github.com/your-repo/travel-bot.git
-
 Установите зависимости:
 
 pip install -r requirements.txt
