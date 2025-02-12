@@ -14,7 +14,7 @@ import json
 logging.basicConfig(level=logging.INFO)
 
 # Инициализация бота и диспетчера
-bot = Bot(token='7783295762:AAHwh0C2DgalOVEvqzOnyDI9PekMtWGwwqw')
+bot = Bot(token='api-key')
 storage = MemoryStorage()
 dp = Dispatcher(storage=storage)
 
