@@ -1,6 +1,6 @@
 ## **Travel Bot** @Curort_planer_bot
 
-**Попробуйте нашего бота: [@Curort_planer_bot](https://t.me/catheshow)**
+**Попробуйте нашего бота: [@Curort_planer_bot](https://t.me/Curort_planer_bot)**
 **Описание**
 Этот бот создан для помощи с подбором туров, предлагая актуальные предложения с отелями.
 
