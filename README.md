@@ -1,3 +1,4 @@
+@Curort_planer_bot
 Telegram Travel Bot
 
 Этот бот помогает пользователям подбирать туры, предлагая актуальные предложения отелей с использованием API Travelpayouts.
